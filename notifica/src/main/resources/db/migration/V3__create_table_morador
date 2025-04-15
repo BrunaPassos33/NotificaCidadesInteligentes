@@ -1,0 +1,10 @@
+CREATE SEQUENCE morador_seq START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TBL_MORADOR (
+    id BIGINT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    endereco VARCHAR(255),
+    email VARCHAR(255),
+    telefone VARCHAR(20),
+    preferencia_notificacao VARCHAR(20)
+);

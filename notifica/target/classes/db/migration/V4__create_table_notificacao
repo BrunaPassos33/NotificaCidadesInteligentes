@@ -1,0 +1,9 @@
+CREATE SEQUENCE notificacao_seq START WITH 1 INCREMENT BY 1;
+
+CREATE TABLE TBL_NOTIFICACAO (
+    id BIGINT PRIMARY KEY,
+    morador_id BIGINT NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_envio TIMESTAMP NOT NULL,
+    FOREIGN KEY (morador_id) REFERENCES morador(id)
+);
