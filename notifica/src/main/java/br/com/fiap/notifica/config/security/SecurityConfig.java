@@ -19,17 +19,50 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/auth/login", "/auth/register").permitAll() // Permite login e registro sem autenticação
-                .anyRequest().authenticated() // Requer autenticação para outras requisições
-            )
-            .csrf().disable() // Desativa CSRF (apenas se estiver utilizando uma API REST)
-            .formLogin().disable() // Desativa o login baseado em formulário, se for usar autenticação por token
-            .httpBasic().disable(); // Desativa o login básico, se for usar autenticação por token
+    @Autowired
+    private VerificarToken verificarToken;
 
-        return http.build();
+    @Bean
+    public SecurityFilterChain filtrarCadeiaDeSeguranca(HttpSecurity httpSecurity) throws Exception{
+        return httpSecurity.csrf(csrf-> csrf.disable())
+                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(authorize-> authorize
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/moradores").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST, "/moradores").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/moradores").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/moradores").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/coleta").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST, "/coleta").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/coleta").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/coleta").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/residuos").hasAnyRole("ADMIN","USER")
+                        .requestMatchers(HttpMethod.POST, "/residuos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/residuos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/residuos").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/usuarios").hasRole("ADMIN")
+
+                        .anyRequest()
+                        .authenticated())
+                .addFilterBefore(verificarToken,
+                        UsernamePasswordAuthenticationFilter.class)
+                .build();
+
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }
