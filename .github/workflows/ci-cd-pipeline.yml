@@ -39,8 +39,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build da imagem Docker
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/notifica:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/notifica:latest ./notifica
 
       - name: Push da imagem para o Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/notifica:latest
-
