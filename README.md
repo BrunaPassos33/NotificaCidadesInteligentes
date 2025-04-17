@@ -82,7 +82,7 @@ Deploy automatizado com Docker Compose
 
 ###  📂 Estrutura
 
-notifica/
+```notifica/
 ├── src/
 ├── Dockerfile
 ├── docker-compose.yml
@@ -91,7 +91,7 @@ notifica/
 │       └── ci-cd-pipeline.yml
 └── README.md
 
-
+```
 ---
 
 
