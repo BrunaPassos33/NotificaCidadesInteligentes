@@ -26,32 +26,15 @@ Sistema de gerenciamento de coleta e resíduos, voltado para cidades inteligente
 
 ### 🔧 Build do projeto (local)
 
-<<<<<<< HEAD
-```bash
-./mvnw clean package
-
-=======
 bash
 ./mvnw clean package
 
-
----
-
-
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
 ### 🐳 Rodando com Docker Compose
 
 docker compose up --build
 
 O projeto será exposto em: http://localhost:8080
 
-<<<<<<< HEAD
-=======
-
----
-
-
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
 ###  🔐 Autenticação
 O projeto utiliza JWT (JSON Web Token) para autenticação e autorização de usuários.
 
@@ -71,12 +54,6 @@ Authorization: Bearer SEU_TOKEN_AQUI
 Verifique a classe SecurityConfig.java para as regras completas
 
 
-<<<<<<< HEAD
-=======
----
-
-
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
 ###  🔁 Pipeline CI/CD
 A automação de build e deploy é feita com GitHub Actions:
 
@@ -88,19 +65,9 @@ Push para Docker Hub
 
 Deploy automatizado com Docker Compose
 
-<<<<<<< HEAD
-###  📂 Estrutura
-
-notifica/
-=======
-
----
-
-
 ###  📂 Estrutura
 
 ```notifica/
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
 ├── src/
 ├── Dockerfile
 ├── docker-compose.yml
@@ -109,13 +76,8 @@ notifica/
 │       └── ci-cd-pipeline.yml
 └── README.md
 
-<<<<<<< HEAD
-=======
 ```
----
 
-
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
 ###  🐙 GitHub Actions (CI/CD)
 Sempre que um push for feito na branch main, a pipeline será executada:
 
@@ -125,13 +87,6 @@ Login no Docker Hub
 
 Push da imagem
 
-<<<<<<< HEAD
-=======
-
----
-
-
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
 ## 🛠️ Variáveis de ambiente
 
 Arquivo `application.properties`:
@@ -142,13 +97,11 @@ minha.chave.secreta=${JWT.SECRET:fiap}
 
 Você pode definir `JWT.SECRET` como variável de ambiente para mudar o segredo do token.
 
+
+---
+
+
 Projeto desenvolvido por Bruna Mendes da Cunha Passos
 
 Para a disciplina de DevOps e CI/CD — FIAP
 
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 4e6366bdcfd9d78bdafa9ed4473449397956152a
