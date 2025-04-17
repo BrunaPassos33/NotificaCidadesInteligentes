@@ -26,14 +26,22 @@ Sistema de gerenciamento de coleta e resíduos, voltado para cidades inteligente
 
 ### 🔧 Build do projeto (local)
 
-```bash
+bash
 ./mvnw clean package
+
+
+---
+
 
 ### 🐳 Rodando com Docker Compose
 
 docker compose up --build
 
 O projeto será exposto em: http://localhost:8080
+
+
+---
+
 
 ###  🔐 Autenticação
 O projeto utiliza JWT (JSON Web Token) para autenticação e autorização de usuários.
@@ -54,6 +62,9 @@ Authorization: Bearer SEU_TOKEN_AQUI
 Verifique a classe SecurityConfig.java para as regras completas
 
 
+---
+
+
 ###  🔁 Pipeline CI/CD
 A automação de build e deploy é feita com GitHub Actions:
 
@@ -64,6 +75,10 @@ Build da imagem Docker
 Push para Docker Hub
 
 Deploy automatizado com Docker Compose
+
+
+---
+
 
 ###  📂 Estrutura
 
@@ -76,6 +91,10 @@ notifica/
 │       └── ci-cd-pipeline.yml
 └── README.md
 
+
+---
+
+
 ###  🐙 GitHub Actions (CI/CD)
 Sempre que um push for feito na branch main, a pipeline será executada:
 
@@ -84,6 +103,10 @@ Criação de imagem Docker
 Login no Docker Hub
 
 Push da imagem
+
+
+---
+
 
 ## 🛠️ Variáveis de ambiente
 
